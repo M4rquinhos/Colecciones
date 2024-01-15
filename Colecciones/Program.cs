@@ -1,4 +1,5 @@
-﻿
+﻿////////////////////////////////////////////////////////////////////////////////////////////////
+///listas
 
 string[] persona = { "Juan Manuel Garcia", "Felipe", "Maria", "Jose" };
 
@@ -43,8 +44,8 @@ void ImprimirLista(List<string> lista)
 Console.WriteLine($"Existe Felipe en la lista {ListaPersonas.Contains("Felipe")}");
 
 //  Busque aquellos nombres en la lista que tengan mas de 10 caracteres
-var resultado = ListaPersonas.Exists( x => x.Length >= 10 );
-Console.WriteLine( $"Existe un nombre de mas de 10 caracteres: {resultado}" );
+var resultado = ListaPersonas.Exists(x => x.Length >= 10);
+Console.WriteLine($"Existe un nombre de mas de 10 caracteres: {resultado}");
 
 BuscarNombres(ListaPersonas);
 void BuscarNombres(List<string> lista)
@@ -59,3 +60,54 @@ void BuscarNombres(List<string> lista)
 //  Buscar un nombre que comience con la letra V
 var elementoConV = ListaPersonas.Find(x => x.StartsWith("V"));
 Console.WriteLine(elementoConV);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///LinkedLits
+///
+
+Console.WriteLine("///////////////////lINKEDLISTS////////////////////////////////");
+
+string[] canciones = {
+    "El Drip",
+    "El azul",
+    "El tsurito",
+    "Se amerita",
+    "Ando enfocado",
+    "los botones azules",
+    "El de la codeina",
+    "Igualito a mi apa"
+};
+
+// Creando LinkedList
+LinkedList<string> ListaReproduccion = new LinkedList<string>(canciones);
+
+//  Agregando elementos al inicio y al final de la lista
+ListaReproduccion.AddFirst("Mi primera cancion");
+ListaReproduccion.AddLast("Mi ultimacancion");
+
+//  Imprimir elementos de una LinkedList
+foreach (var item in ListaReproduccion)
+{
+    Console.WriteLine(item);
+}
+
+//Buscar el primero y ultimo elemento de la linkedlist
+LinkedListNode<string> primeraCancion = ListaReproduccion.First!;
+LinkedListNode<string> ultimaCancion = ListaReproduccion.Last!;
+
+Console.WriteLine($"La primera canicion {primeraCancion.Value} y la ultima cancion {ultimaCancion.Value}");
+
+// Los elementos pueden ser agregados o removidos dependiendo de un item existente
+ListaReproduccion.AddAfter(primeraCancion, "Mi segunda cancion");
+foreach (var item in ListaReproduccion)
+{
+    Console.WriteLine("Lista nueva");
+    Console.WriteLine(item);
+}
+
+//  Buscar elementos utilizando el metodo Contains
+Console.WriteLine($"Buscando la cancion El Drip: {ListaReproduccion.Contains("El Drip")}");
+
+//Acceder a la data utilizando los metodos Next y Previous
+Console.WriteLine($"la cancion que sigue de la primera cancion {primeraCancion.Next!.Value }");
+Console.WriteLine($"la cancion que sigue de la cancion anterior {ultimaCancion.Previous!.Value}");
