@@ -182,3 +182,43 @@ foreach (var item in cola)
 //  Buscar un elemento con contains
 var existeElmentoEnLaQ = cola.Contains("dos");
 Console.WriteLine($"Existe el elemento en la Q?: {existeElmentoEnLaQ}");
+
+
+Console.WriteLine($"///////////////////DICTIONARY///////////////////");
+
+//  Crear un diccionario
+Dictionary<string, string> diccionario = new Dictionary<string, string>();
+
+//  Agregar elementos a un diccionario
+diccionario.Add(".doc", "Documentos de Word");
+diccionario.Add(".txt", "Documentos de texto");
+diccionario.Add(".pdf", "Documentos de pdf");
+diccionario.Add(".jpg", "Archivos de imagen");
+
+//  Intentand agregar un elemento con un key repetido
+//diccionario.Add(".doc", "Documentos de Word"); //Da error por el key
+var sePuedeAgregarKeyRepetida = diccionario.TryAdd(".doc", "otro elemento");
+if (!sePuedeAgregarKeyRepetida)
+{
+    Console.WriteLine($"No se pudo agregar el elemento porque es duplicado");
+}
+
+// Acceder a un elemento de un diccionario
+var valorTxt = diccionario[".txt"];
+Console.WriteLine($"El valor de la key .txt es: {valorTxt}");
+
+//  Actualizar el valor del elemento de un diccionario 
+diccionario[".doc"] = "Nuevo valor para el documento .doc";
+
+//  Buscar elementos de un diccionario por el key o por el valor
+Console.WriteLine($"Buscando por key bmp: {diccionario.ContainsKey(".bmp")}");
+Console.WriteLine($"Buscando por value .pdf : {diccionario.ContainsValue("Documentos de pdf")}");
+
+//  Eliminar un elemento de un diccionario
+diccionario.Remove(".jpg");
+
+//  Imprimir elementos de un diccionario
+foreach (KeyValuePair<string, string> item in diccionario)
+{
+    Console.WriteLine($"Los elementos del diccionario: {item.Key} - {item.Value}");
+}
